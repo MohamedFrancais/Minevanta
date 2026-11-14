@@ -1,1 +1,487 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102719">
+<meta name="description" content="Minevanta - أخبار Minecraft وتقارير حصرية وأسرار التحديثات وأدلة المودات.">
+<title>MINEVANTA | عالم Minecraft</title>
+
+<style>
+:root{
+  --bg:#102719;
+  --panel:#193b29;
+  --panel2:#214b32;
+  --green:#75d65b;
+  --lime:#b5f58a;
+  --text:#f1f7ed;
+  --muted:#b5c9b5;
+  --border:#41684a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 20% 20%,#285b36 0,transparent 45%),
+    linear-gradient(135deg,#102719,#183b27 55%,#0b2115);
+  font-family:Arial,Tahoma,sans-serif;
+  line-height:1.8;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.10;
+  background-image:
+    linear-gradient(90deg,#8acb73 1px,transparent 1px),
+    linear-gradient(#8acb73 1px,transparent 1px);
+  background-size:42px 42px;
+  z-index:-1;
+}
+a{color:var(--lime);text-decoration:none}
+button,input,select{font:inherit}
+.container{width:min(1120px,92%);margin:auto}
+header{
+  position:sticky;top:0;z-index:10;
+  background:#102719ed;
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav{
+  min-height:72px;display:flex;
+  align-items:center;justify-content:space-between;
+  gap:15px;flex-wrap:wrap;padding:10px 0;
+}
+.logo{
+  color:var(--lime);font-weight:1000;
+  font-size:25px;letter-spacing:2px;
+}
+nav{display:flex;gap:17px;flex-wrap:wrap}
+nav a{color:var(--text);font-size:14px}
+nav a:hover{color:var(--green)}
+.hero{
+  padding:75px 0 55px;
+  min-height:370px;
+  display:flex;align-items:center;
+  background:
+    linear-gradient(90deg,#102719dd,#10271999),
+    radial-gradient(circle at 80% 40%,#4c963d,#173c27 65%);
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  width:230px;height:230px;
+  right:8%;top:50px;
+  opacity:.20;
+  background:#85e05d;
+  clip-path:polygon(25% 0,75% 0,100% 25%,100% 100%,0 100%,0 25%);
+}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.hero h1{font-size:clamp(38px,7vw,68px);margin:0;color:var(--lime)}
+.hero p{color:#e1efdc;font-size:18px}
+.eyebrow{color:var(--green);font-weight:bold}
+.btn{
+  display:inline-block;background:var(--green);
+  color:#102719;padding:10px 20px;
+  border:0;border-radius:8px;
+  font-weight:bold;cursor:pointer;
+}
+.btn.secondary{background:var(--panel2);color:white;border:1px solid var(--border)}
+section{padding:48px 0}
+.section-head{margin-bottom:22px}
+.section-head h2{font-size:27px;margin:0;color:var(--lime)}
+.section-head p{color:var(--muted);margin:4px 0}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+  gap:18px;
+}
+.card{
+  background:linear-gradient(145deg,var(--panel),#142e20);
+  border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  transition:.2s;
+}
+.card:hover{transform:translateY(-4px);border-color:var(--green)}
+.card-body{padding:17px}
+.card h3{margin:0 0 8px;color:var(--lime);font-size:19px}
+.card p{color:var(--muted);margin:5px 0 14px}
+.card img{width:100%;height:175px;object-fit:cover;display:block;background:#23472d}
+.tag{
+  display:inline-block;font-size:12px;
+  color:#d9ffd0;background:#315c37;
+  border-radius:20px;padding:3px 10px;margin-bottom:9px;
+}
+.read-more{color:var(--lime);font-weight:bold}
+details{
+  background:#102719;border:1px solid var(--border);
+  border-radius:9px;padding:10px 13px;margin-top:12px;
+}
+summary{cursor:pointer;color:var(--lime);font-weight:bold}
+.guide-list{padding-right:20px;color:var(--muted)}
+.search{
+  width:100%;padding:13px;
+  border-radius:9px;border:1px solid var(--border);
+  background:#102719;color:white;margin-bottom:20px;
+}
+.status{color:var(--muted);font-size:13px}
+footer{
+  border-top:1px solid var(--border);
+  background:#0a1d12;padding:28px 0 18px;
+  color:var(--muted);text-align:center;
+}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.language{
+  margin-top:18px;font-size:12px;
+  display:flex;justify-content:center;align-items:center;gap:7px;
+}
+.language select{
+  background:#193b29;color:white;
+  border:1px solid var(--border);
+  border-radius:6px;padding:5px 8px;font-size:12px;
+}
+.empty{color:var(--muted);padding:20px;text-align:center}
+
+/* Creeper الخاص بنا */
+.creeper{
+  width:66px;height:88px;background:#63c94d;
+  position:relative;margin:0 auto 12px;
+  image-rendering:pixelated;
+  box-shadow:inset -10px -8px #388e37;
+}
+.creeper:before{
+  content:"";position:absolute;top:20px;left:12px;
+  width:12px;height:12px;background:#102719;
+  box-shadow:30px 0 #102719,15px 15px #102719,
+  5px 32px #102719,25px 32px #102719,
+  15px 42px #102719;
+}
+#intro{
+  position:fixed;inset:0;z-index:1000;
+  display:grid;place-content:center;text-align:center;
+  background:#07170d;
+  transition:opacity .5s;
+}
+#intro.hide{opacity:0;pointer-events:none}
+#intro .creeper{animation:shake .35s infinite alternate}
+.boom{
+  font-size:70px;display:none;
+  animation:explode .7s forwards;
+}
+#intro.exploding .creeper{display:none}
+#intro.exploding .boom{display:block}
+#intro small{color:#b5f58a}
+@keyframes shake{
+  from{transform:rotate(-5deg)}
+  to{transform:rotate(5deg)}
+}
+@keyframes explode{
+  0%{transform:scale(.2);opacity:0}
+  50%{transform:scale(1.4);opacity:1}
+  100%{transform:scale(2.1);opacity:0}
+}
+@media(max-width:650px){
+  .nav{justify-content:center}
+  nav{justify-content:center;gap:12px}
+  .hero{padding:55px 0}
+  .hero:after{right:-80px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- افتتاحية Creeper تظهر عند كل تحميل -->
+<div id="intro">
+  <div>
+    <div class="creeper"></div>
+    <div class="boom">💥</div>
+    <strong style="color:#b5f58a;font-size:25px">MINEVANTA</strong>
+    <br><small>Welcome to our world</small>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">MINEVANTA</a>
+    <nav>
+      <a href="#home" data-ar="الرئيسية" data-fr="Accueil" data-en="Home">الرئيسية</a>
+      <a href="#news" data-ar="أخبارنا" data-fr="Nos actualités" data-en="Our News">أخبارنا</a>
+      <a href="#secrets" data-ar="أسرار التحديثات" data-fr="Secrets" data-en="Update Secrets">أسرار التحديثات</a>
+      <a href="#mods" data-ar="المودات" data-fr="Mods" data-en="Mods">المودات</a>
+      <a href="#about" data-ar="من نحن" data-fr="À propos" data-en="About">من نحن</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <div class="eyebrow">THE WORLD OF MINECRAFT</div>
+    <h1>MINEVANTA</h1>
+    <p data-ar="أخبارنا، اكتشافاتنا، أسرار التحديثات وأدلة المودات. كل ذلك بأسلوب Minevanta." data-fr="Nos actualités, découvertes, secrets des mises à jour et guides de mods." data-en="Our news, discoveries, update secrets and mod guides.">
+      أخبارنا، اكتشافاتنا، أسرار التحديثات وأدلة المودات. كل ذلك بأسلوب Minevanta.
+    </p>
+    <a class="btn" href="#news" data-ar="اكتشف أخبارنا" data-fr="Découvrir nos actualités" data-en="Explore our news">اكتشف أخبارنا</a>
+  </div>
+</section>
+
+<section id="news">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-ar="أخبار Minevanta" data-fr="Actualités Minevanta" data-en="Minevanta News">أخبار Minevanta</h2>
+      <p data-ar="تقارير ومقالات نكتبها ونحررها داخل Minevanta." data-fr="Des articles rédigés par Minevanta." data-en="Original articles written and edited by Minevanta.">تقارير ومقالات نكتبها ونحررها داخل Minevanta.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div style="height:175px;background:linear-gradient(135deg,#315e36,#142c20);display:grid;place-items:center;font-size:55px">📰</div>
+        <div class="card-body">
+          <span class="tag">MINEVANTA REPORT</span>
+          <h3>كيف نتابع تحديثات Minecraft ونكتشف إضافاتها؟</h3>
+          <p>تقرير من فريق Minevanta عن طريقة قراءة ملاحظات التحديث والتمييز بين الإضافات المؤكدة والتوقعات.</p>
+          <details>
+            <summary>اقرأ التقرير</summary>
+            <p>قبل تجربة أي تحديث، نحدد إصدار اللعبة والمنصة، ثم نفحص قائمة التغييرات ونقارنها بما يظهر داخل اللعبة. لا نعتبر أي ميزة رسمية قبل التأكد منها.</p>
+            <p>في تقاريرنا نوضح ما تم تأكيده، وما يحتاج إلى تجربة إضافية، ونضيف صوراً من إعدادنا أو صوراً مرخصة.</p>
+          </details>
+        </div>
+      </article>
+
+      <article class="card">
+        <div style="height:175px;background:linear-gradient(135deg,#416d3d,#172b20);display:grid;place-items:center;font-size:55px">🔎</div>
+        <div class="card-body">
+          <span class="tag">OUR GUIDE</span>
+          <h3>كيف تكتشف الكائنات والعناصر الجديدة؟</h3>
+          <p>دليل تحريري يساعدك على فحص الكائنات والعناصر والتغييرات في عوالم Minecraft.</p>
+          <details>
+            <summary>اقرأ الدليل</summary>
+            <p>ابدأ بتحديد إصدار اللعبة، ثم جرّب العالم في وضع إبداعي، وافحص العناصر والكائنات الجديدة. سجّل مكان ظهورها وسلوكها، ولا تخلط بين محتوى المودات ومحتوى اللعبة الأصلية.</p>
+          </details>
+        </div>
+      </article>
+
+      <article class="card">
+        <div style="height:175px;background:linear-gradient(135deg,#47683d,#192c20);display:grid;place-items:center;font-size:55px">📷</div>
+        <div class="card-body">
+          <span class="tag">MINEVANTA LAB</span>
+          <h3>مختبر Minevanta: كيف نختبر المودات؟</h3>
+          <p>منهجنا في تجربة المودات وفحص التوافق قبل إعداد دليل التركيب.</p>
+          <details>
+            <summary>اقرأ التقرير</summary>
+            <p>نفحص إصدار Minecraft المطلوب، والمحمل المناسب، والمتطلبات الإضافية، ثم نجرب المود في بيئة منفصلة قبل نشر دليل واضح للزوار.</p>
+          </details>
+        </div>
+      </article>
+    </div>
+    <p class="status">هذه مقالات افتتاحية أصلية من Minevanta، وليست أخباراً عاجلة عن تحديث لم يتم التحقق منه.</p>
+  </div>
+</section>
+
+<section id="secrets">
+  <div class="container">
+    <div class="section-head">
+      <h2>أسرار التحديثات</h2>
+      <p>نحلل الإضافات الجديدة ونشرحها بالصور والتجربة.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="card-body">
+          <span class="tag">MOBS</span>
+          <h3>الكائنات الجديدة</h3>
+          <p>ملفات عن الكائنات وسلوكها وأماكن ظهورها وقدراتها.</p>
+          <details><summary>ماذا ستجد هنا؟</summary>
+            <p>اسم الكائن، صورته، مكان ظهوره، سلوكه، العناصر المرتبطة به، والإصدار الذي ظهر فيه.</p>
+          </details>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-body">
+          <span class="tag">ITEMS & LOOT</span>
+          <h3>الأدوات واللوت</h3>
+          <p>شرح العناصر والأدوات والغنائم الجديدة.</p>
+          <details><summary>ماذا ستجد هنا؟</summary>
+            <p>خصائص العنصر، استخداماته، أماكن العثور عليه، وطريقة الحصول عليه إذا كانت معروفة ومؤكدة.</p>
+          </details>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-body">
+          <span class="tag">PORTALS & STRUCTURES</span>
+          <h3>البوابات والهياكل</h3>
+          <p>أدلة عن البوابات والأماكن والهياكل الغامضة.</p>
+          <details><summary>ماذا ستجد هنا؟</summary>
+            <p>طريقة العثور على الهيكل أو فتح البوابة عندما تكون الميزة موجودة فعلاً في الإصدار، مع صور وخطوات التجربة.</p>
+          </details>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="mods">
+  <div class="container">
+    <div class="section-head">
+      <h2>مكتبة المودات</h2>
+      <p>نقدم المودات مع شروحات تركيب من إعداد Minevanta.</p>
+    </div>
+    <input id="modSearch" class="search" type="search" placeholder="ابحث عن مود...">
+    <div id="modsList" class="grid">
+      <p class="empty">جارٍ تحميل المودات...</p>
+    </div>
+    <p id="modStatus" class="status"></p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <h2>من نحن؟</h2>
+      <p>Minevanta مشروع مستقل يهتم بعالم Minecraft.</p>
+    </div>
+    <div class="card card-body">
+      <h3>محتوى من إعدادنا</h3>
+      <p>نكتب أخبارنا وتقاريرنا وأدلتنا بأسلوبنا الخاص. نحرص على التحقق من المعلومات ونوضح مصادرها، ونستخدم الصور التي نملكها أو نملك إذناً باستخدامها.</p>
+      <p>للتواصل: <a href="mailto:abbassimohamedamine30@gmail.com">abbassimohamedamine30@gmail.com</a></p>
+      <p class="status">Minevanta مشروع مستقل وغير تابع لشركة Mojang أو Microsoft، ولا ندّعي وجود شراكة رسمية معهما.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo">MINEVANTA</div>
+    <p>© 2026 Minevanta — All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#news">أخبارنا</a>
+      <a href="#secrets">أسرار التحديثات</a>
+      <a href="#mods">المودات</a>
+      <a href="mailto:abbassimohamedamine30@gmail.com">اتصل بنا</a>
+    </div>
+    <div class="language">
+      <span>Language / اللغة</span>
+      <select id="language" aria-label="اختيار اللغة">
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </div>
+</footer>
+
+<script>
+// افتتاحية الانفجار عند كل فتح للصفحة
+const intro=document.getElementById("intro");
+setTimeout(()=>intro.classList.add("exploding"),900);
+setTimeout(()=>intro.classList.add("hide"),1550);
+setTimeout(()=>intro.remove(),2100);
+
+// تغيير لغة واجهة الموقع
+const language=document.getElementById("language");
+function setLanguage(lang){
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+  document.querySelectorAll("[data-ar]").forEach(el=>{
+    const value=el.dataset[lang];
+    if(value) el.textContent=value;
+  });
+  language.value=lang;
+  try{localStorage.setItem("minevanta-language",lang)}catch(e){}
+}
+language.addEventListener("change",()=>setLanguage(language.value));
+try{
+  const saved=localStorage.getItem("minevanta-language");
+  if(saved && ["ar","fr","en"].includes(saved)) setLanguage(saved);
+}catch(e){}
+
+// تحميل مودات Java من Modrinth
+const modsList=document.getElementById("modsList");
+const modStatus=document.getElementById("modStatus");
+const modSearch=document.getElementById("modSearch");
+let mods=[];
+
+async function loadMods(query=""){
+  modsList.innerHTML='<p class="empty">جارٍ البحث عن المودات...</p>';
+  try{
+    const url="https://api.modrinth.com/v2/search?limit=12&facets="+
+      encodeURIComponent('[["project_type:mod"],["categories:fabric","categories:forge","categories:neoforge"]]')
+      +"&query="+encodeURIComponent(query);
+    const response=await fetch(url);
+    if(!response.ok) throw new Error("API error");
+    const data=await response.json();
+    mods=data.hits||[];
+    showMods();
+    modStatus.textContent="النتائج من Modrinth. صفحة المود الأصلية تعرض الملفات والإصدارات المتوافقة.";
+  }catch(error){
+    modsList.innerHTML='<p class="empty">تعذر تحميل المودات الآن. يمكنك المحاولة لاحقاً.</p>';
+    modStatus.textContent="تحقق من اتصال الإنترنت.";
+  }
+}
+function showMods(){
+  modsList.innerHTML="";
+  if(!mods.length){
+    modsList.innerHTML='<p class="empty">لم نعثر على نتائج.</p>';
+    return;
+  }
+  mods.forEach(mod=>{
+    const card=document.createElement("article");
+    card.className="card";
+    const img=document.createElement("img");
+    img.alt=mod.title||"Minecraft mod";
+    img.src=mod.icon_url||"";
+    img.onerror=()=>img.style.display="none";
+    const body=document.createElement("div");
+    body.className="card-body";
+    const title=document.createElement("h3");
+    title.textContent=mod.title;
+    const desc=document.createElement("p");
+    desc.textContent=mod.description||"لا يوجد وصف متاح.";
+    const tag=document.createElement("span");
+    tag.className="tag";
+    tag.textContent="JAVA MOD";
+    const guide=document.createElement("details");
+    const summary=document.createElement("summary");
+    summary.textContent="طريقة التركيب من Minevanta";
+    const steps=document.createElement("ol");
+    steps.className="guide-list";
+    [
+      "افحص إصدار Minecraft الذي يدعمه المود.",
+      "تأكد من تثبيت المحمّل المطلوب مثل Fabric أو Forge أو NeoForge.",
+      "اقرأ متطلبات المود من صفحته الأصلية.",
+      "نزّل الملف المتوافق من المصدر الأصلي.",
+      "ضع ملف المود في مجلد mods ثم شغّل اللعبة.",
+      "إذا لم يعمل المود، راجع الإصدار والمتطلبات وسجل الأخطاء."
+    ].forEach(step=>{
+      const li=document.createElement("li");
+      li.textContent=step;
+      steps.appendChild(li);
+    });
+    guide.append(summary,steps);
+    const link=document.createElement("a");
+    link.className="btn";
+    link.href="https://modrinth.com/mod/"+encodeURIComponent(mod.slug);
+    link.target="_blank";
+    link.rel="noopener noreferrer";
+    link.textContent="صفحة المود والمصدر";
+    body.append(tag,title,desc,guide,link);
+    card.append(img,body);
+    modsList.appendChild(card);
+  });
+}
+let searchTimer;
+modSearch.addEventListener("input",()=>{
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>loadMods(modSearch.value.trim()),450);
+});
+loadMods();
+</script>
+</body>
+</html>
+
